@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Choisis ton cadeau 🎁</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', cursive;
+      background: linear-gradient(135deg, #ffe0ec, #fad0c4);
+      color: #800040;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .choices button {
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 12px;
+      background-color: #ff6fcf;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .choices button:hover {
+      background-color: #f81fa8;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 15px 30px;
+      background-color: #ff69b4;
+      color: white;
+      text-decoration: none;
+      border-radius: 15px;
+      font-size: 1.2em;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ff1493;
+    }
+
+    /* 💌 Bouton vers lettre */
+    .btn-lettre {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 28px;
+      background-color: #ff6fcf;
+      color: white;
+      border-radius: 15px;
+      font-size: 1.1em;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn-lettre:hover {
+      background-color: #f81fa8;
+      transform: scale(1.05);
+    }
+
+    /* 🌸 Sections cachées */
+    #invitation, #endroit, #cadeau {
+      display: none;
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    #invitation {
+      background: #ffb6c1;
+      padding: 15px;
+      border-radius: 15px;
+      font-size: 1.2em;
+      color: #800020;
+      box-shadow: 0 0 10px #ff69b4;
+    }
+
+    #endroit img,
+    #cadeau img {
+      max-width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #ff69b4;
+      margin-top: 15px;
+    }
+
+    #btn-endroit {
+      display: none;
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 12px;
+      background-color: #ff6fcf;
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #btn-endroit:hover {
+      background-color: #f81fa8;
+    }
+
+    /* 💖 Pluie de cœurs */
+    .falling-heart {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear;
+      color: #ff69b4;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    /* 📸 Photo en bas */
+    .photo-bottom {
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .photo-bottom img {
+      max-width: 350px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #ffb6c1;
+      transition: transform 0.3s;
+    }
+
+    .photo-bottom img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💌 Et maintenant, un petit jeu !</h1>
+    <p>Choisis ce que tu veux :</p>
+
+    <div class="choices">
+      <button id="btn-surprise">Une surprise</button>
+      <button id="btn-bisou">Un bisou</button>
+      <button id="btn-cadeau">Ton cadeau ! 🎁</button>
+      <a href="page4.html" class="btn-lettre">💘 Petit quiz amoureux</a>
+
+    </div>
+
+    <!-- 💌 Lien vers la lettre -->
+    <a href="page3.html" class="btn-lettre">💌 Une lettre pour toi</a>
+
+    <!-- 🎉 Invitation surprise -->
+    <div id="invitation">
+      🎉 Surprise ! Tu es invitée à un dîner romantique au restaurant ce samedi soir à 19h. Prépare-toi à une soirée magique ! 🍽️❤️
+    </div>
+
+    <!-- 👀 Bouton pour voir le lieu -->
+    <button id="btn-endroit">Voir où on va manger</button>
+
+    <!-- 📍 Lieu du restaurant -->
+    <div id="endroit">
+      <h2>ELYSIUM</h2>
+      <img src="images/elysium.jpg" alt="Restaurant ELYSIUM" />
+    </div>
+
+    <!-- 🎁 Le cadeau -->
+    <div id="cadeau">
+      <h2>Voici ton cadeau ! 🎁</h2>
+      <img src="images/stanley.jpg" alt="Cadeau surprise" />
+    </div>
+
+    <!-- 📸 Image finale en bas -->
+    <div class="photo-bottom">
+      <img src="images/lana3.jpeg" alt="Nous deux" />
+    </div>
+
+    <!-- 🔙 Retour -->
+    <a href="index.html" class="btn">← Retour</a>
+  </div>
+
+  <script>
+    const btnSurprise = document.getElementById('btn-surprise');
+    const invitation = document.getElementById('invitation');
+    const btnEndroit = document.getElementById('btn-endroit');
+    const endroit = document.getElementById('endroit');
+    const btnCadeau = document.getElementById('btn-cadeau');
+    const cadeau = document.getElementById('cadeau');
+    const btnBisou = document.getElementById('btn-bisou');
+
+    // 🎁 Afficher la surprise
+    btnSurprise.addEventListener('click', () => {
+      invitation.style.display = 'block';
+      btnEndroit.style.display = 'inline-block';
+      endroit.style.display = 'none';
+      cadeau.style.display = 'none';
+    });
+
+    // 📍 Afficher l’endroit
+    btnEndroit.addEventListener('click', () => {
+      endroit.style.display = 'block';
+      btnEndroit.style.display = 'none';
+      cadeau.style.display = 'none';
+    });
+
+    // 🎁 Afficher le cadeau
+    btnCadeau.addEventListener('click', () => {
+      cadeau.style.display = 'block';
+      endroit.style.display = 'none';
+      invitation.style.display = 'none';
+      btnEndroit.style.display = 'none';
+    });
+
+    // 💖 Pluie de cœurs
+    btnBisou.addEventListener('click', () => {
+      const duration = 4000;
+      const frequency = 100;
+
+      const interval = setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("falling-heart");
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }, frequency);
+
+      setTimeout(() => clearInterval(interval), duration);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+/* 🌸 Style général du corps */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', cursive;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* 🌟 Conteneur principal */
+.container {
+  padding: 60px 20px;
+}
+
+/* 🎀 Titre avec effet lumineux */
+h1 {
+  font-size: 3em;
+  animation: glow 2s infinite;
+}
+
+/* 💌 Message principal */
+.message {
+  font-size: 1.4em;
+  margin: 20px auto;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* 📸 Photo principale */
+.main-photo {
+  margin-top: 20px;
+  width: 250px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #fff;
+}
+
+/* 🔘 Bouton général (comme "suivant", "retour", etc.) */
+.btn {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 15px 30px;
+  background-color: #ff69b4;
+  color: white;
+  text-decoration: none;
+  border-radius: 15px;
+  font-size: 1.2em;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+  background-color: #ff1493;
+  transform: scale(1.05);
+}
+
+/* 🎁 Les 3 boutons de choix */
+.choices button {
+  margin: 10px;
+  padding: 15px 25px;
+  font-size: 1em;
+  border: none;
+  border-radius: 10px;
+  background-color: #ff6fcf;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 0 10px #fff2f2;
+  transition: 0.3s ease;
+}
+
+.choices button:hover {
+  background-color: #f81fa8;
+  transform: scale(1.05);
+}
+
+/* ✨ Animation de glow pour les titres */
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff69b4;
+  }
+  50% {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff1493;
+  }
+}
+
+/* 💖 Pluie de cœurs */
+.falling-heart {
+  position: fixed;
+  top: -50px;
+  font-size: 24px;
+  animation: fall 4s linear;
+  color: #ff69b4;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
