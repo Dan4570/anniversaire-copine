@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Petit Quiz pour Toi 💘</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', cursive;
+      background: linear-gradient(135deg, #ffe0ec, #fad0c4);
+      color: #800040;
+      text-align: center;
+      padding: 60px 20px;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+
+    .question {
+      font-size: 1.4em;
+      margin-bottom: 25px;
+    }
+
+    .answers button {
+      display: block;
+      margin: 10px auto;
+      padding: 12px 25px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 12px;
+      background-color: #ff6fcf;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .answers button:hover {
+      background-color: #f81fa8;
+    }
+
+    .result {
+      display: none;
+      font-size: 1.4em;
+      margin-top: 30px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    a.btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 25px;
+      background-color: #ff69b4;
+      color: white;
+      text-decoration: none;
+      border-radius: 15px;
+      font-size: 1.1em;
+      transition: background-color 0.3s;
+    }
+
+    a.btn:hover {
+      background-color: #ff1493;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall 4s linear;
+      color: #ff69b4;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    .shake {
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-10px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>💘 Petit Quiz pour Toi 💘</h1>
+
+  <div class="question" id="question">Chargement...</div>
+  <div class="answers" id="answers"></div>
+
+  <div class="result" id="result"></div>
+  <a href="page2.html" class="btn">← Retour</a>
+
+  <script>
+    const questions = [
+      {
+        text: "Tu penses que j’ai commencé à faire ce site il y a combien de temps ?",
+        options: ["Hier", "Il y a 2 jours", "Il y a 2 semaines"],
+        correct: "Il y a 2 semaines"
+      },
+      {
+        text: "Qu’est-ce que j’aime le plus chez toi ?",
+        options: ["ton coeur", "Tes yeux", "tes tétés"],
+        correct: "tes tétés"
+      },
+    {
+  text: "Tu penses que je t’aime à combien de % ?",
+  options: ["-100", "200", "Infini"],
+  correct: "Infini"
+}
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById("question").innerText = q.text;
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+
+      q.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.innerText = option;
+        btn.onclick = () => {
+          if (option === q.correct) {
+            score++;
+            launchHearts();
+          } else {
+            shakeScreen();
+          }
+
+          currentQuestion++;
+          if (currentQuestion < questions.length) {
+            setTimeout(showQuestion, 600);
+          } else {
+            setTimeout(showResult, 800);
+          }
+        };
+        answersDiv.appendChild(btn);
+      });
+    }
+
+    function showResult() {
+      document.getElementById("question").style.display = "none";
+      document.getElementById("answers").style.display = "none";
+      const resultDiv = document.getElementById("result");
+      resultDiv.style.display = "block";
+
+      let message = "";
+      if (score === questions.length) {
+        message = "Wow ! Tu me connais par cœur 🥹💖";
+      } else if (score >= 1) {
+        message = "Pas mal du tout 😘 Tu connais déjà beaucoup de choses sur moi !";
+      } else {
+        message = "C’est pas grave 😄 Je t’aime quand même plus que tout 💘";
+      }
+
+      resultDiv.innerHTML = `<p>Tu as eu ${score}/${questions.length} bonnes réponses.</p><p>${message}</p>`;
+    }
+
+    function launchHearts() {
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
+    }
+
+    function shakeScreen() {
+      document.body.classList.add("shake");
+      setTimeout(() => {
+        document.body.classList.remove("shake");
+      }, 400);
+    }
+
+    // Démarrer le quiz
+    showQuestion();
+  </script>
+</body>
+</html>

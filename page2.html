@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Choisis ton cadeau 🎁</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', cursive;
+      background: linear-gradient(135deg, #ffe0ec, #fad0c4);
+      color: #800040;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    .container {
+      padding: 60px 20px;
+    }
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+    .choices button {
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 12px;
+      background-color: #ff6fcf;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .choices button:hover {
+      background-color: #f81fa8;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 15px 30px;
+      background-color: #ff69b4;
+      color: white;
+      text-decoration: none;
+      border-radius: 15px;
+      font-size: 1.2em;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #ff1493;
+    }
+    /* 💌 Boutons liens */
+    .btn-lettre {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 28px;
+      background-color: #ff6fcf;
+      color: white;
+      border-radius: 15px;
+      font-size: 1.1em;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .btn-lettre:hover {
+      background-color: #f81fa8;
+      transform: scale(1.05);
+    }
+    /* 🌸 Sections cachées */
+    #cadeau, #message-bisou {
+      display: none;
+      margin-top: 25px;
+      text-align: center;
+    }
+    #cadeau {
+      font-size: 1.2em;
+      color: #800020;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ff69b4;
+      max-width: 400px;
+      margin: auto;
+    }
+    #message-bisou {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #800040;
+    }
+    /* 💖 Pluie de cœurs */
+    .falling-heart {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear;
+      color: #ff69b4;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💌 Et maintenant, un petit jeu !</h1>
+    <p>Choisis ce que tu veux :</p>
+
+    <div class="choices">
+      <!-- Le bouton surprise a été retiré -->
+      <button id="btn-bisou">Un bisou</button>
+      <button id="btn-cadeau">Ton cadeau ! 🎁</button>
+      <a href="page4.html" class="btn-lettre">💘 Petit quiz amoureux</a>
+    </div>
+
+    <!-- 🎁 Le cadeau -->
+    <div id="cadeau">
+      <p><strong>Indice :</strong> Je garde ta boisson fraîche en été et chaude en hiver, toujours prête pour tes aventures. Qui suis-je ?</p>
+    </div>
+
+    <!-- 🥰 Message Bisou -->
+    <div id="message-bisou">
+      Moi je te fais 2 bisous... Non je rigole, j’en fais 8 ! 😘😘😘😘😘😘😘😘
+    </div>
+
+    <!-- 💌 Lien vers la lettre -->
+    <a href="page3.html" class="btn-lettre">💌 Une lettre pour toi</a>
+
+    <!-- 🔙 Retour -->
+    <a href="index.html" class="btn">← Retour</a>
+  </div>
+
+  <script>
+    const btnCadeau = document.getElementById('btn-cadeau');
+    const cadeau = document.getElementById('cadeau');
+    const btnBisou = document.getElementById('btn-bisou');
+    const messageBisou = document.getElementById('message-bisou');
+
+    // 🎁 Afficher le cadeau
+    btnCadeau.addEventListener('click', () => {
+      cadeau.style.display = 'block';
+      messageBisou.style.display = 'none';
+    });
+
+    // 💖 Pluie de cœurs + message bisou
+    btnBisou.addEventListener('click', () => {
+      messageBisou.style.display = 'block';
+      cadeau.style.display = 'none';
+
+      const duration = 4000;
+      const frequency = 100;
+
+      const interval = setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("falling-heart");
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }, frequency);
+
+      setTimeout(() => clearInterval(interval), duration);
+    });
+  </script>
+</body>
+</html>
